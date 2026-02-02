@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: creative_effectiveness_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./images:/app/images
+      - ./data:/app/data
+    environment:
+      - IMAGES_ROOT=/app/images
+    restart: always
