@@ -9,3 +9,4 @@ uvicorn
 pydantic
 tqdm
 python-multipart
+timm

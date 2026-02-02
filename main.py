@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 from models.facade import CreativeEffectivenessFacade
+import pickle
 
 def run_demo():
     print("--- Creative Effectiveness Pipeline Demo ---")
@@ -49,6 +50,11 @@ def run_demo():
     print(f"Objects Detected: {result['object_count']}")
 
     print("\nDemo completed successfully!")
+
+    model_filename = "creative_model.pkl"
+    with open(model_filename, 'wb') as file:
+        pickle.dump(facade, file)
+    print(f"Model saved successfully to {model_filename}!")
 
 if __name__ == "__main__":
     run_demo()
