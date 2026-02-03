@@ -1,0 +1,16 @@
+pandas
+numpy
+pillow
+scikit-learn
+torch
+transformers
+fastapi
+uvicorn
+pydantic
+tqdm
+python-multipart
+joblib
+shap
+matplotlib
+seaborn
+timm
