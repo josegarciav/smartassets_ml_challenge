@@ -2,8 +2,9 @@ import pandas as pd
 import numpy as np
 import os
 from PIL import Image
+import cv2
 
-def generate_mock_data(n=100):
+def generate_mock_data(n=100, generate_videos=True):
     os.makedirs("data", exist_ok=True)
     os.makedirs("images", exist_ok=True)
 
@@ -44,12 +45,24 @@ def generate_mock_data(n=100):
     df = pd.DataFrame(data)
     df.to_csv("data/data.csv", index=False)
 
-    # Generate random images
-    for cid in creative_ids:
-        img = Image.fromarray(np.random.randint(0, 255, (224, 224, 3), dtype=np.uint8))
+    # Generate random images and videos
+    for i, cid in enumerate(creative_ids):
+        # 1. Generate Image
+        img_np = np.random.randint(0, 255, (224, 224, 3), dtype=np.uint8)
+        img = Image.fromarray(img_np)
         img.save(f"images/{cid}.jpg")
 
-    print(f"Generated {n} samples in data/data.csv and images/")
+        # 2. Optionally generate Video for every 5th item
+        if generate_videos and i % 5 == 0:
+            video_path = f"images/{cid}.mp4"
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            out = cv2.VideoWriter(video_path, fourcc, 10.0, (224, 224))
+            for _ in range(30): # 3 seconds at 10fps
+                frame = np.random.randint(0, 255, (224, 224, 3), dtype=np.uint8)
+                out.write(frame)
+            out.release()
+
+    print(f"Generated {n} samples in data/data.csv and images/ (with some videos)")
 
 if __name__ == "__main__":
     generate_mock_data()

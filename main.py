@@ -46,7 +46,7 @@ def run_demo():
     print(f"Predicted CTR: {result['predicted_ctr']:.6f}")
     print(f"Visual Sentiment: {result['visual_sentiment']:.4f}")
     print(f"Textual Sentiment: {result['textual_sentiment']:.4f}")
-    print(f"Objects Detected: {result['object_count']}")
+    print(f"Objects Detected: {result['object_counts']}")
 
     print("\nDemo completed successfully!")
 

@@ -14,3 +14,4 @@ shap
 matplotlib
 seaborn
 timm
+opencv-python
